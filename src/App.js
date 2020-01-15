@@ -1,26 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
+import Header from './components/Header/Header';
+import Home from './components/Home/Home';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isMhButton: false,
+    }
+    this.handleMobileHeaderButtonClick = this.handleMobileHeaderButtonClick.bind(this);
+  }
+  
+  handleMobileHeaderButtonClick(isClicked) {
+    if(isClicked !== this.state.isMhButton) {
+      this.setState({
+        isMhButton: true
+      });
+    } else {
+      this.setState({
+        isMhButton: false
+      });
+    }
+    
+  }
+
+  render() {
+    return (
+      <>
+        <Header 
+          handleClick={this.handleMobileHeaderButtonClick} 
+          isClicked={this.state.isMhButton}></Header>
+        <Switch>
+          <Route path="/"> 
+            <Home></Home>
+          </Route>
+        </Switch>
+      </>
+    );
+  }
+  
 }
 
 export default App;

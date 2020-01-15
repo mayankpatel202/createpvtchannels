@@ -1,0 +1,40 @@
+.headerContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  width: 100%;
+  background-color: #4A154B;
+}
+
+.headerLogo {
+  height: 100%;
+}
+
+.headerLogo img {
+  height: 100%;
+  display: block;
+}
+
+.headerMenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.headerMenu img {
+  display: block;
+}
+
+.headerMenu ul {
+  list-style-type: unset;
+  padding-inline-start: 0px;
+  margin: 0px 30px;
+}
+
+.headerMenu li {
+  display: block;
+  text-align: unset
+}
