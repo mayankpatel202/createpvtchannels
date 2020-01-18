@@ -1,8 +1,10 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
+import SlackLogin from './components/SlackLogin/Login';
+import User from './components/User/User';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,9 +14,9 @@ class App extends React.Component {
     }
     this.handleMobileHeaderButtonClick = this.handleMobileHeaderButtonClick.bind(this);
   }
-  
+
   handleMobileHeaderButtonClick(isClicked) {
-    if(isClicked !== this.state.isMhButton) {
+    if (isClicked !== this.state.isMhButton) {
       this.setState({
         isMhButton: true
       });
@@ -23,24 +25,30 @@ class App extends React.Component {
         isMhButton: false
       });
     }
-    
   }
 
   render() {
+    console.log("Hello")
     return (
       <>
-        <Header 
-          handleClick={this.handleMobileHeaderButtonClick} 
+        <Header
+          handleClick={this.handleMobileHeaderButtonClick}
           isClicked={this.state.isMhButton}></Header>
         <Switch>
-          <Route path="/"> 
+          <Route path="/slackLogin">
+            <SlackLogin></SlackLogin>
+          </Route>
+          <Route path="/auth">
+            <User></User>
+          </Route>
+          <Route exact path="/">
             <Home></Home>
           </Route>
         </Switch>
       </>
     );
   }
-  
+
 }
 
-export default App;
+export default withRouter(App);

@@ -7,34 +7,32 @@ class MhButton extends React.Component {
     super(props);
     this.handleMHBClick = this.handleMHBClick.bind(this);
     this.renderMenu = this.renderMenu.bind(this);
+    this.handleAuth = this.handleAuth.bind(this);
   }
 
-  handleMHBClick() {
-    let menuContainer = document.getElementsByClassName('MhbMenuContainer')[0];
+  handleMHBClick(e) {
     if (this.props.isClicked) {
-      menuContainer.classList.remove('MhbMenuContainer');
-      menuContainer.classList.add('MhbMenuContainerClose');
-      setTimeout(() => {
-        this.props.handleClick(true);
-      }, 100)
-    } else {
-      if (menuContainer) {
-        menuContainer.classList.remove('MhbMenuContainerClose');
-        menuContainer.classList.add('MhbMenuContainer');
-      }
-      this.props.handleClick(true);
+      let menuContainer = document.getElementsByClassName('MhbMenuContainer')[0];
+      menuContainer.style.animation = 'down 0.5s linear reverse backwards'
     }
+    setTimeout(() => {
+      this.props.handleClick(true);
+    }, 100)
 
+  }
+
+  handleAuth() {
+    this.handleMHBClick();
   }
 
   renderMenu() {
     return (
       <div className="MhbMenuContainer">
-        <div className="headerMenu" >
+        <div className="mhbMenu" >
           <ul>
-            <li>
-              <Link to="/auth">
-                <img src="https://api.slack.com/img/sign_in_with_slack.png" alt="Slack Sign In Button" />
+            <li >
+              <Link to="/slackLogin" onClick={this.handleAuth}>
+                <img src="https://api.slack.com/img/sign_in_with_slack.png" alt="Slack Sign In" />
               </Link>
             </li>
           </ul>

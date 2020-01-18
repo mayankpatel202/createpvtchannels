@@ -1,5 +1,6 @@
+/* eslint-disable no-loop-func */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import './Header.css';
 import logo from '../../assets/logo.png';
 import MhButton from '../Shared/MobileHeaderButton/MhButton';
@@ -11,20 +12,21 @@ class Header extends React.Component {
     this.menuRender = this.menuRender.bind(this);
   }
 
+
   menuRender() {
     let deviceWidth = window.innerWidth;
     if (deviceWidth < 500) {
       return (
-        <MhButton handleClick={this.props.handleClick} 
-        isClicked={this.props.isClicked}></MhButton>
+        <MhButton handleClick={this.props.handleClick}
+          isClicked={this.props.isClicked}></MhButton>
       );
     } else {
       return (
         <div className="headerMenu">
           <ul>
             <li>
-              <Link to="/auth">
-                <img src="https://api.slack.com/img/sign_in_with_slack.png" alt="Slack Sign In Button" />
+              <Link to="slackLogin">
+                <img src="https://api.slack.com/img/sign_in_with_slack.png" alt="Slack Sign In" />
               </Link>
             </li>
           </ul>
@@ -52,4 +54,6 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);
+
+
