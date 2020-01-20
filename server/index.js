@@ -5,7 +5,7 @@ const path = require('path');
 const { getAuth } = require('./slackApis')
 
 const app = express();
-app.use(bodyParser());
+app.use(bodyParser({extended: false}));
 //SERVE STATIC FILES
 app.use(express.static(path.join(__dirname, '../build')))
 
