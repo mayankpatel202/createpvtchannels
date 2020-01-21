@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 
-function getAuth(params, cb) {
+function getAccessToken(params, cb) {
     let url = 'https://slack.com/api/oauth.access';
     let clientID =  process.env.CLIENT_ID;
     let clientSecret = process.env.CLIENT_SECRET;
@@ -11,10 +11,11 @@ function getAuth(params, cb) {
       cb(null, response.data);
     })
     .catch((err) => {
-        console.log("ERROR in AUTH", err)
+        console.log("ERROR in slackApis.js", err);
+        cb(err, { ok: false });
     })
 }
 
 module.exports = {
-    getAuth,
+    getAccessToken,
 }

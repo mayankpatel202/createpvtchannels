@@ -3,11 +3,11 @@ import React from 'react';
 
 
 class User extends React.Component {
+
   render() {
+    console.log(this.props.name);
     return (
-      <div>
-        Test for url
-      </div>
+      <h1>User1</h1>
     )
   }
 }
